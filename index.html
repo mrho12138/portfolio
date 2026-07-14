@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>嘉亮 · AIGC 作品集</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+            background: #0a0a0f;
+            color: #e0e0e0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0f; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            padding: 16px 48px; display: flex; justify-content: space-between; align-items: center;
+            background: rgba(10,10,15,0.85); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .nav-logo { font-size: 20px; font-weight: 700; color: #fff; letter-spacing: 2px; }
+        .nav-logo span { color: #6c8cff; }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { text-decoration: none; color: #999; font-size: 14px; font-weight: 500; transition: color 0.3s; letter-spacing: 1px; }
+        .nav-links a:hover { color: #fff; }
+        .nav-contact-btn { padding: 8px 24px; border: 1px solid #6c8cff; border-radius: 24px; color: #6c8cff; text-decoration: none; font-size: 13px; font-weight: 500; transition: all 0.3s; }
+        .nav-contact-btn:hover { background: #6c8cff; color: #fff; }
+        .hero {
+            min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+            padding: 120px 24px 80px; position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(108,140,255,0.06) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 50%, rgba(155,93,229,0.06) 0%, transparent 50%);
+            animation: bgMove 20s ease-in-out infinite alternate;
+        }
+        @keyframes bgMove { 0% { transform: translate(0,0) rotate(0deg); } 100% { transform: translate(-5%,-5%) rotate(5deg); } }
+        .hero-content { position: relative; z-index: 1; }
+        .hero-badge { display: inline-block; padding: 6px 20px; border-radius: 20px; font-size: 12px; font-weight: 500; background: rgba(108,140,255,0.12); color: #8ca3ff; border: 1px solid rgba(108,140,255,0.2); margin-bottom: 24px; letter-spacing: 2px; }
+        .hero h1 { font-size: 56px; font-weight: 800; color: #fff; margin-bottom: 8px; letter-spacing: 4px; }
+        .hero h1 .highlight { background: linear-gradient(135deg, #6c8cff, #9b5de5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero .subtitle { font-size: 20px; color: #888; margin-bottom: 12px; letter-spacing: 3px; }
+        .hero .desc { font-size: 15px; color: #666; max-width: 520px; margin: 0 auto 40px; line-height: 1.8; }
+        .hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .hero-cta a { padding: 12px 36px; border-radius: 30px; text-decoration: none; font-size: 14px; font-weight: 600; transition: all 0.3s; letter-spacing: 1px; }
+        .btn-primary { background: linear-gradient(135deg, #6c8cff, #9b5de5); color: #fff; border: none; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(108,140,255,0.3); }
+        .btn-outline { background: transparent; color: #ccc; border: 1px solid #333; }
+        .btn-outline:hover { border-color: #6c8cff; color: #6c8cff; }
+        .hero-scroll { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; color: #555; font-size: 12px; letter-spacing: 2px; animation: bounce 2s infinite; }
+        .hero-scroll .arrow { width: 20px; height: 20px; border-right: 1px solid #555; border-bottom: 1px solid #555; transform: rotate(45deg); }
+        @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+        section { padding: 100px 48px; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-tag { display: inline-block; font-size: 12px; font-weight: 600; color: #6c8cff; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px; }
+        .section-title { font-size: 36px; font-weight: 700; color: #fff; margin-bottom: 12px; }
+        .section-desc { font-size: 15px; color: #777; max-width: 500px; margin: 0 auto; }
+        .about { background: #0d0d14; }
+        .about-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .about-card { background: #12121c; border-radius: 16px; padding: 28px; border: 1px solid rgba(255,255,255,0.04); }
+        .about-card h3 { font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+        .about-card p, .about-card li { font-size: 14px; color: #999; line-height: 1.8; }
+        .about-card ul { list-style: none; }
+        .about-card ul li { padding: 3px 0 3px 18px; position: relative; }
+        .about-card ul li::before { content: '▸'; position: absolute; left: 0; color: #6c8cff; }
+        .tool-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+        .tool-chip { display: inline-block; padding: 4px 14px; border-radius: 14px; font-size: 12px; background: rgba(108,140,255,0.08); color: #8ca3ff; border: 1px solid rgba(108,140,255,0.15); }
+        .works-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; }
+        .work-card { background: #12121c; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.04); transition: all 0.4s; cursor: pointer; }
+        .work-card:hover { transform: translateY(-6px); border-color: rgba(108,140,255,0.2); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+        .work-card-image { width: 100%; aspect-ratio: 16/10; background: #1a1a2e; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
+        .work-card-image .work-label { position: absolute; top: 12px; left: 12px; padding: 4px 12px; border-radius: 8px; font-size: 11px; font-weight: 600; background: rgba(0,0,0,0.6); color: #fff; backdrop-filter: blur(4px); }
+        .work-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+        .work-card:hover .work-card-image img { transform: scale(1.05); }
+        .work-card-info { padding: 20px 24px; }
+        .work-card-info h3 { font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+        .work-tools { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+        .work-tools span { font-size: 11px; color: #6c8cff; background: rgba(108,140,255,0.08); padding: 2px 10px; border-radius: 10px; }
+        .work-card-info p { font-size: 13px; color: #777; line-height: 1.6; }
+        .work-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; padding: 40px; text-align: center; }
+        .work-placeholder .big-icon { font-size: 48px; margin-bottom: 12px; opacity: 0.3; }
+        .work-placeholder p { font-size: 13px; color: #555; }
+        .video-section { background: #0d0d14; }
+        .video-grid { max-width: 900px; margin: 0 auto; }
+        .video-card { background: #12121c; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.04); margin-bottom: 24px; }
+        .video-card:last-child { margin-bottom: 0; }
+        .video-player { width: 100%; aspect-ratio: 9/16; max-height: 500px; background: #1a1a2e; display: flex; align-items: center; justify-content: center; }
+        .video-player .v-placeholder { text-align: center; color: #555; }
+        .video-player .v-placeholder .play-icon { font-size: 56px; opacity: 0.3; margin-bottom: 12px; }
+        .video-info { padding: 20px 24px; }
+        .video-info h3 { font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+        .video-info p { font-size: 13px; color: #777; }
+        .video-tools { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+        .video-tools span { font-size: 11px; color: #6c8cff; background: rgba(108,140,255,0.08); padding: 2px 10px; border-radius: 10px; }
+        .contact-section { text-align: center; padding: 80px 48px; background: linear-gradient(180deg, #0a0a0f 0%, #0d0d14 100%); }
+        .contact-section h2 { font-size: 32px; font-weight: 700; color: #fff; margin-bottom: 16px; }
+        .contact-section p { color: #888; font-size: 15px; margin-bottom: 32px; }
+        .contact-links { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+        .contact-links a { display: flex; align-items: center; gap: 8px; text-decoration: none; color: #999; font-size: 14px; transition: color 0.3s; }
+        .contact-links a:hover { color: #fff; }
+        .footer { padding: 24px 48px; text-align: center; border-top: 1px solid rgba(255,255,255,0.04); font-size: 12px; color: #444; }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.85); z-index: 2000; backdrop-filter: blur(8px); padding: 40px; align-items: center; justify-content: center; }
+        .modal-overlay.active { display: flex; }
+        .modal-content { max-width: 800px; width: 100%; background: #12121c; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); max-height: 90vh; overflow-y: auto; }
+        .modal-close-btn { position: absolute; top: 24px; right: 32px; background: none; border: none; color: #fff; font-size: 32px; cursor: pointer; opacity: 0.6; transition: opacity 0.3s; z-index: 2001; }
+        .modal-close-btn:hover { opacity: 1; }
+        .modal-image { width: 100%; aspect-ratio: 16/10; background: #1a1a2e; display: flex; align-items: center; justify-content: center; }
+        .modal-image img { width: 100%; height: 100%; object-fit: cover; }
+        .modal-body { padding: 32px; }
+        .modal-body h2 { font-size: 22px; font-weight: 600; color: #fff; margin-bottom: 8px; }
+        .modal-tools { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+        .modal-tools span { font-size: 12px; color: #6c8cff; background: rgba(108,140,255,0.08); padding: 4px 12px; border-radius: 12px; }
+        .modal-body p { font-size: 14px; color: #999; line-height: 1.8; }
+        @media (max-width: 768px) {
+            nav { padding: 12px 20px; }
+            .nav-links { display: none; }
+            .hero h1 { font-size: 32px; }
+            .hero .subtitle { font-size: 16px; }
+            section { padding: 60px 20px; }
+            .about-grid { grid-template-columns: 1fr; }
+            .works-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 28px; }
+            .contact-links { gap: 24px; }
+            .modal-overlay { padding: 16px; }
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <div class="nav-logo">嘉亮<span>.</span></div>
+    <ul class="nav-links">
+        <li><a href="#works">作品</a></li>
+        <li><a href="#video">漫剧</a></li>
+        <li><a href="#about">关于</a></li>
+        <li><a href="#contact">联系</a></li>
+    </ul>
+    <a href="#contact" class="nav-contact-btn">合作咨询</a>
+</nav>
+
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-badge">✦ 3 年 AIGC 实战经验</div>
+        <h1>AI 全流程<br><span class="highlight">视觉创作者</span></h1>
+        <p class="subtitle">Midjourney · Stable Diffusion · ComfyUI · 可灵 · 即梦</p>
+        <p class="desc">从 AI 漫剧到品牌视觉，从电商主图到小红书封面，<br>用 AI 重新定义视觉创作的效率与边界。</p>
+        <div class="hero-cta">
+            <a href="#works" class="btn-primary">浏览作品</a>
+            <a href="#contact" class="btn-outline">合作联系</a>
+        </div>
+    </div>
+    <div class="hero-scroll"><span>SCROLL</span><div class="arrow"></div></div>
+</section>
+
+<section id="works">
+    <div class="section-header">
+        <div class="section-tag">✦ Portfolio</div>
+        <h2 class="section-title">精选作品</h2>
+        <p class="section-desc">AI 视觉设计 · 品牌海报 · 电商视觉 · 小红书封面</p>
+    </div>
+    <div class="works-grid">
+        <div class="work-card" onclick="openModal('m1')">
+            <div class="work-card-image" style="background:linear-gradient(135deg,#1a1a2e,#2d1b69);">
+                <span class="work-label">品牌视觉</span>
+                <div class="work-placeholder"><div class="big-icon">🎨</div><p>在此放置你的品牌海报</p></div>
+            </div>
+            <div class="work-card-info">
+                <h3>品牌视觉 · 年度节气海报</h3>
+                <div class="work-tools"><span>Midjourney</span><span>PS</span></div>
+                <p>全年 24 节气系列海报，统一品牌调性，AI 生成+后期精修</p>
+            </div>
+        </div>
+        <div class="work-card" onclick="openModal('m2')">
+            <div class="work-card-image" style="background:linear-gradient(135deg,#2d1b69,#1a1a2e);">
+                <span class="work-label">小红书设计</span>
+                <div class="work-placeholder"><div class="big-icon">📱</div><p>在此放置你的小红书封面</p></div>
+            </div>
+            <div class="work-card-info">
+                <h3>小红书封面 · 社媒视觉</h3>
+                <div class="work-tools"><span>Midjourney</span><span>PS</span></div>
+                <p>高点击率封面设计，精准把握小红书视觉调性与爆款逻辑</p>
+            </div>
+        </div>
+        <div class="work-card" onclick="openModal('m3')">
+            <div class="work-card-image" style="background:linear-gradient(135deg,#1a1a2e,#0f3460);">
+                <span class="work-label">电商视觉</span>
+                <div class="work-placeholder"><div class="big-icon">🛒</div><p>在此放置你的电商主图</p></div>
+            </div>
+            <div class="work-card-info">
+                <h3>电商主图 · 详情页设计</h3>
+                <div class="work-tools"><span>Stable Diffusion</span><span>PS</span><span>ComfyUI</span></div>
+                <p>AI 生成商品场景图+精修排版，提升视觉转化率</p>
+            </div>
+        </div>
+        <div class="work-card" onclick="openModal('m4')">
+            <div class="work-card-image" style="background:linear-gradient(135deg,#0f3460,#1a1a2e);">
+                <span class="work-label">活动 KV</span>
+                <div class="work-placeholder"><div class="big-icon">🎯</div><p>在此放置你的展会海报</p></div>
+            </div>
+            <div class="work-card-info">
+                <h3>展会主视觉 · 年会 KV</h3>
+                <div class="work-tools"><span>Midjourney</span><span>PS</span><span>ComfyUI</span></div>
+                <p>大型展会主宣传海报、年会主视觉，专业级品牌视觉输出</p>
+            </div>
+        </div>
+        <div class="work-card" onclick="openModal('m5')">
+            <div class="work-card-image" style="background:linear-gradient(135deg,#2d1b69,#0f3460);">
+                <span class="work-label">AI 绘画</span>
+                <div class="work-placeholder"><div class="big-icon">✨</div><p>在此放置你的 AI 绘画作品</p></div>
+            </div>
+            <div class="work-card-info">
+                <h3>AI 创意绘画 · 概念设计</h3>
+                <div class="work-tools"><span>Midjourney</span><span>SD</span><span>ComfyUI</span></div>
+                <p>多风格 AI 绘画创作，从写实到概念，从场景到角色</p>
+            </div>
+        </div>
+        <div class="work-card" onclick="openModal('m6')">
+            <div class="work-card-image" style="background:linear-gradient(135deg,#1a1a2e,#2d1b69);">
+                <span class="work-label">更多作品</span>
+                <div class="work-placeholder"><div class="big-icon">➕</div><p>更多作品持续更新中</p></div>
+            </div>
+            <div class="work-card-info">
+                <h3>更多视觉作品</h3>
+                <div class="work-tools"><span>持续更新</span></div>
+                <p>Logo 设计 · 包装设计 · Banner · 品牌全案 · 持续更新中</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="video-section" id="video">
+    <div class="section-header">
+        <div class="section-tag">✦ AI 漫剧</div>
+        <h2 class="section-title">AI 漫剧作品</h2>
+        <p class="section-desc">从分镜到成片，AI 全流程制作</p>
+    </div>
+    <div class="video-grid">
+        <div class="video-card">
+            <div class="video-player">
+                <div class="v-placeholder">
+                    <div class="play-icon">🎬</div>
+                    <p>在此嵌入你的 AI 漫剧视频</p>
+                    <p style="font-size:12px;color:#444;margin-top:8px;">支持 MP4 / YouTube / Bilibili 嵌入</p>
+                </div>
+            </div>
+            <div class="video-info">
+                <h3>AI 漫剧 · 玄幻短篇 Demo</h3>
+                <div class="video-tools"><span>Midjourney</span><span>可灵 AI</span><span>剪映</span></div>
+                <p>30 秒竖屏 AI 漫剧，从剧本分镜到 AI 出图、动态合成、配音配乐全流程制作</p>
+            </div>
+        </div>
+        <div class="video-card">
+            <div class="video-player">
+                <div class="v-placeholder">
+                    <div class="play-icon">🎬</div>
+                    <p>在此嵌入第二条 AI 漫剧视频</p>
+                    <p style="font-size:12px;color:#444;margin-top:8px;">展示不同风格或题材的作品</p>
+                </div>
+            </div>
+            <div class="video-info">
+                <h3>AI 漫剧 · 都市题材 Demo</h3>
+                <div class="video-tools"><span>Stable Diffusion</span><span>即梦</span><span>剪映</span></div>
+                <p>都市题材 AI 漫剧，突出人物统一性、画面连贯性和剧情节奏感</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about" id="about">
+    <div class="section-header">
+        <div class="section-tag">✦ About</div>
+        <h2 class="section-title">关于我</h2>
+        <p class="section-desc">3 年 AIGC 深耕 · 全工具链覆盖 · 从创意到交付</p>
+    </div>
+    <div class="about-grid">
+        <div class="about-card">
+            <h3>👤 个人简介</h3>
+            <p>3 年 AIGC 全栈设计师，从传统设计转型 AI 内容创作，具备完整的 AI 工具链运用能力与成熟的商业设计交付经验。擅长 AI 漫剧全流程制作、小红书/社媒视觉设计、电商主图与详情页设计、品牌视觉设计。追求高效、高质、高审美，可长期稳定合作。</p>
+        </div>
+        <div class="about-card">
+            <h3>💼 服务方向</h3>
+            <ul>
+                <li>AI 漫剧全流程制作（分镜 → 出图 → 动态合成 → 配音成片）</li>
+                <li>小红书封面 / 社媒配图设计</li>
+                <li>电商主图 / 详情页 / Banner / 活动页面</li>
+                <li>品牌视觉 / 活动 KV / 海报设计</li>
+                <li>AI 绘画 & 精修出图</li>
+                <li>Logo / 包装 / 品牌全案</li>
+            </ul>
+        </div>
+        <div class="about-card">
+            <h3>🛠️ AI 工具</h3>
+            <div class="tool-grid">
+                <span class="tool-chip">Midjourney</span>
+                <span class="tool-chip">Stable Diffusion</span>
+                <span class="tool-chip">ComfyUI</span>
+                <span class="tool-chip">可灵 AI</span>
+                <span class="tool-chip">即梦</span>
+                <span class="tool-chip">DALL·E / GPT-4</span>
+                <span class="tool-chip">剪映 AI</span>
+            </div>
+            <h3 style="margin-top:20px;">🎨 设计软件</h3>
+            <div class="tool-grid">
+                <span class="tool-chip">Photoshop</span>
+                <span class="tool-chip">剪映专业版</span>
+                <span class="tool-chip">CAD</span>
+                <span class="tool-chip">SketchUp</span>
+                <span class="tool-chip">Lumion</span>
+                <span class="tool-chip">D5 Render</span>
+            </div>
+        </div>
+        <div class="about-card">
+            <h3>📈 个人优势</h3>
+            <ul>
+                <li><strong>3 年 AIGC 深耕</strong> — 从早期用户到全流程落地，经验扎实</li>
+                <li><strong>全工具链覆盖</strong> — 市面上主流 AI 工具全部精通</li>
+                <li><strong>设计功底深厚</strong> — 园林景观专业出身，构图/色彩/光影审美在线</li>
+                <li><strong>商业设计经验</strong> — 年框项目、展会 KV、企业级品牌视觉</li>
+                <li><strong>交付意识强</strong> — 按时交付、主动沟通、配合修改</li>
+                <li><strong>可长期稳定合作</strong> — 时间灵活，响应快速</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="contact-section" id="contact">
+    <h2>开启合作</h2>
+    <p>有项目需求？或者只是想聊聊合作可能？随时联系 ✦</p>
+    <div class="contact-links">
+        <a href="#">📧 你的邮箱@example.com</a>
+        <a href="#">📱 微信: YourWeChat</a>
+        <a href="#">🖥️ 可提供作品集 PDF 版</a>
+    </div>
+    <p style="margin-top:32px;font-size:13px;color:#555;">* 远程线上合作 · 按单/按月均可 · 长期稳定接单 *</p>
+</section>
+
+<div class="footer">© 2026 嘉亮 · AIGC 全流程设计师 · All Rights Reserved</div>
+
+<!-- Modals -->
+<div class="modal-overlay" id="m1" onclick="if(event.target===this)closeModal('m1')">
+    <button class="modal-close-btn" onclick="closeModal('m1')">✕</button>
+    <div class="modal-content">
+        <div class="modal-image" style="background:linear-gradient(135deg,#1a1a2e,#2d1b69);">
+            <div class="work-placeholder"><div class="big-icon">🎨</div><p>在此放置高清大图</p></div>
+        </div>
+        <div class="modal-body">
+            <h2>品牌视觉 · 年度节气海报</h2>
+            <div class="modal-tools"><span>Midjourney</span><span>Photoshop</span></div>
+            <p>全年 24 节气系列品牌海报，从立春到大寒，统一品牌调性与视觉风格。使用 Midjourney 生成基础画面，Photoshop 后期精修与排版，确保每张海报既体现节气特色又保持品牌一致性。此项目为长期年框合作，展现了稳定的输出能力与品牌把控力。</p>
+        </div>
+    </div>
+</div>
+<div class="modal-overlay" id="m2" onclick="if(event.target===this)closeModal('m2')">
+    <button class="modal-close-btn" onclick="closeModal('m2')">✕</button>
+    <div class="modal-content">
+        <div class="modal-image" style="background:linear-gradient(135deg,#2d1b69,#1a1a2e);">
+            <div class="work-placeholder"><div class="big-icon">📱</div><p>在此放置高清大图</p></div>
+        </div>
+        <div class="modal-body">
+            <h2>小红书封面 · 社媒视觉</h2>
+            <div class="modal-tools"><span>Midjourney</span><span>Photoshop</span></div>
+            <p>高点击率小红书封面设计，精准把握平台视觉调性。擅长通过大标题+高对比色彩+清晰信息层级，在信息流中快速抓住用户注意力。熟悉小红书封面规范与爆款视觉逻辑，能有效提升笔记点击率。</p>
+        </div>
+    </div>
+</div>
+<div class="modal-overlay" id="m3" onclick="if(event.target===this)closeModal('m3')">
+    <button class="modal-close-btn" onclick="closeModal('m3')">✕</button>
+    <div class="modal-content">
+        <div class="modal-image" style="background:linear-gradient(135deg,#1a1a2e,#0f3460);">
+            <div class="work-placeholder"><div class="big-icon">🛒</div><p>在此放置高清大图</p></div>
+        </div>
+        <div class="modal-body">
+            <h2>电商主图 · 详情页设计</h2>
+            <div class="modal-tools"><span>Stable Diffusion</span><span>ComfyUI</span><span>Photoshop</span></div>
+            <p>运用 AI 生成电商场景图，结合 PS 精修完成商品主图、详情页 Banner 设计。掌握电商视觉转化逻辑，能通过 AI 高效产出质感商品展示图，适合淘宝/拼多多/抖音等电商平台的视觉需求。</p>
+        </div>
+    </div>
+</div>
+<div class="modal-overlay" id="m4" onclick="if(event.target===this)closeModal('m4')">
+    <button class="modal-close-btn" onclick="closeModal('m4')">✕</button>
+    <div class="modal-content">
+        <div class="modal-image" style="background:linear-gradient(135deg,#0f3460,#1a1a2e);">
+            <div class="work-placeholder"><div class="big-icon">🎯</div><p>在此放置高清大图</p></div>
+        </div>
+        <div class="modal-body">
+            <h2>展会主视觉 · 年会 KV</h2>
+            <div class="modal-tools"><span>Midjourney</span><span>ComfyUI</span><span>Photoshop</span></div>
+            <p>独立完成大型展会主宣传海报、企业年会主 KV 等重大品牌视觉项目。从概念构思到最终输出，确保视觉冲击力与品牌调性的平衡，能够驾驭大规模、高要求的商业设计任务。</p>
+        </div>
+    </div>
+</div>
+<div class="modal-overlay" id="m5" onclick="if(event.target===this)closeModal('m5')">
+    <button class="modal-close-btn" onclick="closeModal('m5')">✕</button>
+    <div class="modal-content">
+        <div class="modal-image" style="background:linear-gradient(135deg,#2d1b69,#0f3460);">
+            <div class="work-placeholder"><div class="big-icon">✨</div><p>在此放置高清大图</p></div>
+        </div>
+        <div class="modal-body">
+            <h2>AI 创意绘画 · 概念设计</h2>
+            <div class="modal-tools"><span>Midjourney</span><span>Stable Diffusion</span><span>ComfyUI</span></div>
+            <p>多风格 AI 绘画创作能力，从写实摄影风格到概念艺术、从商业产品渲染到幻想场景设计，均能通过 AI 工具高效产出。精通 ControlNet、LoRA、IP-Adapter 等模型控制技术，确保输出精准可控。</p>
+        </div>
+    </div>
+</div>
+<div class="modal-overlay" id="m6" onclick="if(event.target===this)closeModal('m6')">
+    <button class="modal-close-btn" onclick="closeModal('m6')">✕</button>
+    <div class="modal-content">
+        <div class="modal-image" style="background:linear-gradient(135deg,#1a1a2e,#2d1b69);">
+            <div class="work-placeholder"><div class="big-icon">➕</div><p>更多作品持续更新中</p></div>
+        </div>
+        <div class="modal-body">
+            <h2>更多视觉作品</h2>
+            <div class="modal-tools"><span>持续更新</span></div>
+            <p>Logo 设计、包装设计、品牌全案、Banner 等更多视觉作品持续更新中。可联系获取最新作品集。</p>
+        </div>
+    </div>
+</div>
+
+<script>
+function openModal(id) {
+    document.getElementById(id).classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+    document.getElementById(id).classList.remove('active');
+    document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay.active').forEach(function(m) {
+            m.classList.remove('active');
+        });
+        document.body.style.overflow = '';
+    }
+});
+</script>
+
+</body>
+</html>
