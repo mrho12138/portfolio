@@ -187,15 +187,26 @@
                 <p>高点击率封面设计，精准把握小红书视觉调性与爆款逻辑</p>
             </div>
         </div>
-        <div class="work-card" onclick="openModal('m3')">
+        <div class="work-card" onclick="openModal('m3a')">
             <div class="work-card-image" style="background:linear-gradient(135deg,#1a1a2e,#0f3460);">
                 <span class="work-label">电商视觉</span>
-                <div class="work-placeholder"><div class="big-icon">🛒</div><p>在此放置你的电商主图</p></div>
+                <img src="ecommerce-cosmetics.png" alt="化妆品电商主图" style="width:100%;height:100%;object-fit:cover;">
             </div>
             <div class="work-card-info">
-                <h3>电商主图 · 详情页设计</h3>
-                <div class="work-tools"><span>Stable Diffusion</span><span>PS</span><span>ComfyUI</span></div>
-                <p>AI 生成商品场景图+精修排版，提升视觉转化率</p>
+                <h3>电商主图 · 化妆品</h3>
+                <div class="work-tools"><span>ComfyUI</span><span>PS</span></div>
+                <p>ComfyUI 生成高级感化妆品场景图，专业级产品视觉</p>
+            </div>
+        </div>
+        <div class="work-card" onclick="openModal('m3b')">
+            <div class="work-card-image" style="background:linear-gradient(135deg,#0f3460,#1a1a2e);">
+                <span class="work-label">电商视觉</span>
+                <img src="ecommerce-machine.png" alt="机械设备电商主图" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="work-card-info">
+                <h3>电商主图 · 机械设备</h3>
+                <div class="work-tools"><span>ComfyUI</span><span>PS</span></div>
+                <p>ComfyUI 生成工业质感机械设备展示图</p>
             </div>
         </div>
         <div class="work-card" onclick="openModal('m4')">
@@ -366,6 +377,32 @@
             <h2>小红书封面 · 社媒视觉</h2>
             <div class="modal-tools"><span>Midjourney</span><span>Photoshop</span></div>
             <p>高点击率小红书封面设计，精准把握平台视觉调性。擅长通过大标题+高对比色彩+清晰信息层级，在信息流中快速抓住用户注意力。熟悉小红书封面规范与爆款视觉逻辑，能有效提升笔记点击率。</p>
+        </div>
+    </div>
+</div>
+<div class="modal-overlay" id="m3a" onclick="if(event.target===this)closeModal('m3a')">
+    <button class="modal-close-btn" onclick="closeModal('m3a')">✕</button>
+    <div class="modal-content">
+        <div class="modal-image" style="background:#0a0a0f;">
+            <img src="ecommerce-cosmetics.png" alt="化妆品电商主图">
+        </div>
+        <div class="modal-body">
+            <h2>电商主图 · 化妆品</h2>
+            <div class="modal-tools"><span>ComfyUI</span><span>Photoshop</span></div>
+            <p>ComfyUI 生成高级感化妆品场景图，专业级产品视觉。AI 生成基础画面后通过 PS 精修调整光影和色调，打造符合电商平台要求的高质量主图。</p>
+        </div>
+    </div>
+</div>
+<div class="modal-overlay" id="m3b" onclick="if(event.target===this)closeModal('m3b')">
+    <button class="modal-close-btn" onclick="closeModal('m3b')">✕</button>
+    <div class="modal-content">
+        <div class="modal-image" style="background:#0a0a0f;">
+            <img src="ecommerce-machine.png" alt="机械设备电商主图">
+        </div>
+        <div class="modal-body">
+            <h2>电商主图 · 机械设备</h2>
+            <div class="modal-tools"><span>ComfyUI</span><span>Photoshop</span></div>
+            <p>ComfyUI 生成工业质感机械设备展示图，通过 AI 控制光影和材质质感，呈现专业级工业产品视觉效果。</p>
         </div>
     </div>
 </div>
