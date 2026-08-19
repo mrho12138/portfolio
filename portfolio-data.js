@@ -1,48 +1,4 @@
 window.PORTFOLIO_DATA = {
-  orbit: {
-    title: '轨道之外',
-    category: '图像设计',
-    year: '2026',
-    type: 'image',
-    card: '把“出行自由”从一句口号，变成一场可以被看见的离心运动。',
-    image: 'assets/jialiang-作品-01.webp',
-    video: '',
-    gallery: 'assets/orbit-board.svg',
-    note: '把“自由”拆成离心、脱轨、重新获得方向三个动作，用环形轨道和几何切面建立视觉母题。'
-  },
-  moon: {
-    title: '月亮邮差',
-    category: '图像设计',
-    year: '2025',
-    type: 'image',
-    card: '用一个“送月亮的人”，建立角色、场景与连续叙事。',
-    image: 'assets/jialiang-作品-02.webp',
-    video: '',
-    gallery: 'assets/moon-board.svg',
-    note: ''
-  },
-  signal: {
-    title: '信号',
-    category: '图像设计',
-    year: '2025',
-    type: 'image',
-    card: '把不可见的信息流，转译成一套可延展的海报语言。',
-    image: 'assets/jialiang-作品-03.webp',
-    video: '',
-    gallery: 'assets/signal-board.svg',
-    note: '以波形、扫描线和高对比色块建立可重复的构图模块，让每张海报有变化但共享同一套秩序。'
-  },
-  tide: {
-    title: '潮汐实验',
-    category: '图像设计',
-    year: '2024',
-    type: 'image',
-    card: '以水的流动性，建立护肤品牌的“柔韧”感知。',
-    image: 'assets/jialiang-作品-04.webp',
-    video: '',
-    gallery: 'assets/tide-board.svg',
-    note: ''
-  },
   pulse: {
     title: '心跳帧率',
     category: '图像设计',
@@ -80,6 +36,10 @@ window.PORTFOLIO_DATA = {
   video02: { title: '动态影像 · 02', category: '动态影像', year: '2026', type: 'video', card: '', image: '', video: 'assets/mmexport1769438222895.mp4', gallery: '', note: '' },
   video03: { title: '动态影像 · 03', category: '动态影像', year: '2026', type: 'video', card: '', image: '', video: 'assets/mmexport1769651122681.mp4', gallery: '', note: '' },
   video04: { title: '动态影像 · 04', category: '动态影像', year: '2026', type: 'video', card: '', image: '', video: 'assets/mmexport1787053248523.mp4', gallery: '', note: '' },
+  batch001: { title: '视觉作品 · 01', category: '图像设计', year: '2026', type: 'image', card: '', image: 'assets/20260818-104706-d435b726.jpg', video: '', gallery: '', note: '' },
+  batch002: { title: '视觉作品 · 02', category: '图像设计', year: '2026', type: 'image', card: '', image: 'assets/20260818-104727-9c4d6cf0.jpg', video: '', gallery: '', note: '' },
+  batch003: { title: '视觉作品 · 03', category: '图像设计', year: '2026', type: 'image', card: '', image: 'assets/20260818-104736-77a22f39.jpg', video: '', gallery: '', note: '' },
+  batch004: { title: '视觉作品 · 04', category: '图像设计', year: '2026', type: 'image', card: '', image: 'assets/20260818-104817-ad79a63c.jpg', video: '', gallery: '', note: '' },
   batch005: { title: '视觉作品 · 05', category: '图像设计', year: '2026', type: 'image', card: '', image: 'assets/20260818-110430-e2e48765.jpg', video: '', gallery: '', note: '' },
   batch006: { title: '视觉作品 · 06', category: '图像设计', year: '2026', type: 'image', card: '', image: 'assets/20260818-110431-fb063bc8.jpg', video: '', gallery: '', note: '' },
   batch007: { title: '视觉作品 · 07', category: '图像设计', year: '2026', type: 'image', card: '', image: 'assets/20260818-110451-42e265f4.jpg', video: '', gallery: '', note: '' },
