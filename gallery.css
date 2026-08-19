@@ -1,0 +1,59 @@
+/* ===== 极简媒体画廊（方案 A） ===== */
+.works-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:40px 20px}
+.work-trigger{display:block;width:100%;padding:0;border:0;background:none;text-align:left;cursor:pointer;color:inherit}
+.work-image{aspect-ratio:1/1.08}
+.work-media{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-select:none;user-select:none;-webkit-user-drag:none;user-drag:none;transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .45s}
+.work-card:hover .work-media{transform:scale(1.05);filter:saturate(1.15)}
+.play-badge{position:absolute;z-index:2;left:50%;top:50%;width:60px;height:60px;margin:-30px 0 0 -30px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.5);border-radius:50%;background:rgba(9,9,12,.42);backdrop-filter:blur(5px);color:#fff;font-size:18px;transition:.35s}
+.work-card:hover .play-badge{background:var(--lime);color:#09090c;border-color:var(--lime)}
+.works-grid .work-info h2{font-size:20px;letter-spacing:-.04em;margin:8px 0 6px}
+.works-grid .work-info p{font-size:11px;line-height:1.7;color:var(--muted)}
+
+/* 加载更多 */
+.load-more-wrap{display:flex;justify-content:center;padding:72px 0 0}
+.load-more-wrap[hidden]{display:none}
+.load-more{display:inline-flex;align-items:center;gap:12px;padding:15px 32px;border:1px solid var(--line);background:none;color:var(--white);font-size:11px;letter-spacing:.04em;cursor:pointer;transition:.3s}
+.load-more b{color:var(--lime);font-size:16px;font-weight:400;transition:transform .3s}
+.load-more:hover{border-color:var(--lime);color:var(--lime)}
+.load-more:hover b{transform:rotate(90deg)}
+
+/* ===== 灯箱 ===== */
+.lightbox{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;background:rgba(6,6,9,.94);backdrop-filter:blur(9px);opacity:0;pointer-events:none;transition:opacity .35s}
+.lightbox.open{opacity:1;pointer-events:auto}
+.lightbox-top{position:absolute;top:0;left:0;right:0;z-index:3;display:flex;justify-content:space-between;align-items:center;padding:20px 28px}
+.lightbox-close{width:44px;height:44px;border:1px solid rgba(255,255,255,.3);background:transparent;color:var(--white);font-size:26px;line-height:1;cursor:pointer;transition:.3s}
+.lightbox-close:hover{border-color:var(--lime);color:var(--lime)}
+.lightbox-count{font:10px Consolas,monospace;letter-spacing:.08em;color:var(--muted)}
+.lightbox-stage{flex:1;display:flex;align-items:center;justify-content:center;min-height:0;padding:80px 130px 18px}
+.lightbox-media{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.lightbox-media img,.lightbox-media video{max-width:100%;max-height:100%;object-fit:contain;-webkit-user-select:none;user-select:none;-webkit-user-drag:none;user-drag:none;-webkit-touch-callout:none}
+.lightbox-media img{background:transparent}
+.lightbox-media video{background:#000;border-radius:2px}
+.lightbox-media [hidden]{display:none}
+.lightbox-caption{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;padding:22px 130px 34px}
+.lightbox-caption-text{max-width:620px}
+.lightbox-caption .overline{margin:0 0 14px}
+.lightbox-caption h2{font:600 clamp(30px,4vw,52px)/1.02 Arial,sans-serif;letter-spacing:-.05em;margin:0 0 12px}
+.lightbox-note{font-size:13px;line-height:1.8;color:var(--muted);margin:0}
+.lightbox-note[hidden]{display:none}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:54px;height:54px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.28);background:rgba(9,9,12,.5);color:var(--white);font-size:20px;cursor:pointer;transition:.3s}
+.lightbox-nav:hover{background:var(--lime);color:#09090c;border-color:var(--lime)}
+.lightbox-nav.prev{left:26px}
+.lightbox-nav.next{right:26px}
+
+@media(min-width:761px) and (max-width:1100px){
+  .works-grid{grid-template-columns:repeat(3,1fr);gap:36px 18px}
+}
+
+@media(max-width:760px){
+  .works-grid{display:grid;grid-template-columns:1fr;gap:52px 0}
+  .work-card{margin-bottom:0}
+  .work-image{aspect-ratio:1/1.06}
+  .lightbox-stage{padding:70px 16px 12px}
+  .lightbox-caption{padding:16px 16px 26px}
+  .lightbox-caption h2{font-size:28px}
+  .lightbox-nav{width:44px;height:44px}
+  .lightbox-nav.prev{left:10px}
+  .lightbox-nav.next{right:10px}
+  .lightbox-top{padding:14px 16px}
+}
