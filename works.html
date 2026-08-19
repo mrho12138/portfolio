@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="AI视觉设计案例档案">
+<title>案例档案｜Jialiang</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="gallery.css?v=20260818b">
+<link rel="stylesheet" href="contact.css">
+<script src="portfolio-data.js?v=20260819"></script>
+</head>
+<body class="works-page">
+<div class="noise"></div>
+
+<header class="works-header">
+  <a class="logo" href="index.html"><i>JL</i><span>Jialiang · 个人作品集</span></a>
+  <nav><a class="active" href="works.html">案例档案</a><a href="#about">关于</a></nav>
+  <div class="header-tools">
+    <span class="page-progress"><i></i></span>
+    <span id="page-count">01 / 06</span>
+    <a class="back-home" href="index.html">返回首页 <b>↗</b></a>
+  </div>
+</header>
+
+<main class="works-main">
+  <section class="works-intro">
+    <div>
+      <p class="overline">视觉案例档案 / 2024—2026</p>
+      <h1>不只展示<br><em>也展示思考。</em></h1>
+    </div>
+    <div class="works-desc">
+      <span class="intro-line"></span>
+      <p>每个项目都从问题开始：<br>我如何找到方向、建立视觉系统，并把想法交付成可用的内容。</p>
+    </div>
+  </section>
+
+  <div class="works-toolbar">
+    <div class="works-count">已收录 <strong id="works-total">00</strong> 个作品</div>
+    <div class="filters" id="works-filters">
+      <button class="filter active" data-filter="全部">全部</button>
+      <button class="filter" data-filter="图像设计">图像设计</button>
+      <button class="filter" data-filter="动态影像">动态影像</button>
+    </div>
+  </div>
+
+  <section id="works-grid" class="works-grid" aria-live="polite"></section>
+
+  <div class="load-more-wrap">
+    <button id="load-more" class="load-more" type="button">加载更多 <b>+</b></button>
+  </div>
+
+  <section id="about" class="works-about">
+    <p class="overline">02 / 关于我</p>
+    <div>
+      <h2>我用AI，<br><em>把想法变成作品。</em></h2>
+      <p>我是Jialiang，一名专注于AI广告、图像设计、视觉叙事与动态内容的AI视觉设计师。我擅长从创意命题出发，结合生成式工具、视觉设计与后期能力，把抽象想法转化为有记忆点、可传播、可交付的视觉方案。</p>
+      <div class="about-tags"><span>概念策略</span><span>视觉生成</span><span>叙事设计</span><span>动态延展</span></div>
+      <div class="contact-block">
+        <p class="overline">联系我 / CONTACT</p>
+        <a href="mailto:321754526@qq.com">邮箱 · 321754526@qq.com ↗</a>
+        <span>微信 · jial6886</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="works-footer">
+  <span>Jialiang · AI视觉设计师</span>
+  <a href="index.html">回到首页 ↑</a>
+</footer>
+
+<div id="lightbox" class="lightbox" aria-hidden="true">
+  <div class="lightbox-top">
+    <button id="lightbox-close" class="lightbox-close" aria-label="关闭">×</button>
+    <span id="lightbox-count" class="lightbox-count">01 / 08</span>
+  </div>
+  <button id="lightbox-prev" class="lightbox-nav prev" aria-label="上一个">←</button>
+  <button id="lightbox-next" class="lightbox-nav next" aria-label="下一个">→</button>
+  <div class="lightbox-stage">
+    <div class="lightbox-media">
+      <img id="lightbox-image" src="" alt="">
+      <video id="lightbox-video" controls controlsList="nodownload" disablePictureInPicture playsinline preload="metadata"></video>
+    </div>
+  </div>
+  <div class="lightbox-caption">
+    <div class="lightbox-caption-text">
+      <p id="lightbox-kicker" class="overline"></p>
+      <h2 id="lightbox-title"></h2>
+      <p id="lightbox-note" class="lightbox-note"></p>
+    </div>
+  </div>
+</div>
+
+<script src="script.js?v=20260818b"></script>
+</body>
+</html>
